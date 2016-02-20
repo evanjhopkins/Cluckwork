@@ -12,20 +12,8 @@
 		93B094631C782CAF00CBF9A5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B094611C782CAF00CBF9A5 /* MainMenu.xib */; };
 		93B0946C1C78304900CBF9A5 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B0946A1C78304900CBF9A5 /* ContainerViewController.swift */; };
 		93B0946D1C78304900CBF9A5 /* ContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B0946B1C78304900CBF9A5 /* ContainerViewController.xib */; };
-		93B0948A1C78310A00CBF9A5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93B094761C7830A200CBF9A5 /* Cocoa.framework */; };
-		93B0948F1C78310A00CBF9A5 /* ExtensionCompanionRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B0948E1C78310A00CBF9A5 /* ExtensionCompanionRequestHandler.swift */; };
-		93B094931C78310A00CBF9A5 /* HackIllinoisSafariExtensionCompanion.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 93B094891C78310A00CBF9A5 /* HackIllinoisSafariExtensionCompanion.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		93B094981C7835CA00CBF9A5 /* AppFocusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B094971C7835CA00CBF9A5 /* AppFocusManager.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		93B094911C78310A00CBF9A5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 93B094521C782CAF00CBF9A5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 93B094881C78310A00CBF9A5;
-			remoteInfo = HackIllinoisSafariExtensionCompanion;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		93B094841C7830A200CBF9A5 /* Embed App Extensions */ = {
@@ -34,7 +22,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				93B094931C78310A00CBF9A5 /* HackIllinoisSafariExtensionCompanion.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,10 +37,7 @@
 		93B0946A1C78304900CBF9A5 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		93B0946B1C78304900CBF9A5 /* ContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContainerViewController.xib; sourceTree = "<group>"; };
 		93B094761C7830A200CBF9A5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		93B094891C78310A00CBF9A5 /* HackIllinoisSafariExtensionCompanion.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HackIllinoisSafariExtensionCompanion.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		93B0948D1C78310A00CBF9A5 /* HackIllinoisSafariExtensionCompanion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HackIllinoisSafariExtensionCompanion.entitlements; sourceTree = "<group>"; };
-		93B0948E1C78310A00CBF9A5 /* ExtensionCompanionRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionCompanionRequestHandler.swift; sourceTree = "<group>"; };
-		93B094901C78310A00CBF9A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93B094971C7835CA00CBF9A5 /* AppFocusManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFocusManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,14 +48,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		93B094861C78310A00CBF9A5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				93B0948A1C78310A00CBF9A5 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -79,7 +55,6 @@
 			isa = PBXGroup;
 			children = (
 				93B0945C1C782CAF00CBF9A5 /* HackIllinois */,
-				93B0948B1C78310A00CBF9A5 /* HackIllinoisSafariExtensionCompanion */,
 				93B094751C7830A200CBF9A5 /* Frameworks */,
 				93B0945B1C782CAF00CBF9A5 /* Products */,
 			);
@@ -89,7 +64,6 @@
 			isa = PBXGroup;
 			children = (
 				93B0945A1C782CAF00CBF9A5 /* HackIllinois.app */,
-				93B094891C78310A00CBF9A5 /* HackIllinoisSafariExtensionCompanion.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +73,7 @@
 			children = (
 				93B0945D1C782CAF00CBF9A5 /* AppDelegate.swift */,
 				93B094611C782CAF00CBF9A5 /* MainMenu.xib */,
+				93B094971C7835CA00CBF9A5 /* AppFocusManager.swift */,
 				93B0946E1C78305200CBF9A5 /* View Controllers */,
 				93B0946F1C78306800CBF9A5 /* Supporting Files */,
 			);
@@ -131,24 +106,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		93B0948B1C78310A00CBF9A5 /* HackIllinoisSafariExtensionCompanion */ = {
-			isa = PBXGroup;
-			children = (
-				93B0948E1C78310A00CBF9A5 /* ExtensionCompanionRequestHandler.swift */,
-				93B094901C78310A00CBF9A5 /* Info.plist */,
-				93B0948C1C78310A00CBF9A5 /* Supporting Files */,
-			);
-			path = HackIllinoisSafariExtensionCompanion;
-			sourceTree = "<group>";
-		};
-		93B0948C1C78310A00CBF9A5 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				93B0948D1C78310A00CBF9A5 /* HackIllinoisSafariExtensionCompanion.entitlements */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -164,29 +121,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				93B094921C78310A00CBF9A5 /* PBXTargetDependency */,
 			);
 			name = HackIllinois;
 			productName = HackIllinois;
 			productReference = 93B0945A1C782CAF00CBF9A5 /* HackIllinois.app */;
 			productType = "com.apple.product-type.application";
-		};
-		93B094881C78310A00CBF9A5 /* HackIllinoisSafariExtensionCompanion */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 93B094941C78310A00CBF9A5 /* Build configuration list for PBXNativeTarget "HackIllinoisSafariExtensionCompanion" */;
-			buildPhases = (
-				93B094851C78310A00CBF9A5 /* Sources */,
-				93B094861C78310A00CBF9A5 /* Frameworks */,
-				93B094871C78310A00CBF9A5 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = HackIllinoisSafariExtensionCompanion;
-			productName = HackIllinoisSafariExtensionCompanion;
-			productReference = 93B094891C78310A00CBF9A5 /* HackIllinoisSafariExtensionCompanion.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -200,9 +139,7 @@
 				TargetAttributes = {
 					93B094591C782CAF00CBF9A5 = {
 						CreatedOnToolsVersion = 7.2.1;
-					};
-					93B094881C78310A00CBF9A5 = {
-						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = C835JB7RUE;
 					};
 				};
 			};
@@ -220,7 +157,6 @@
 			projectRoot = "";
 			targets = (
 				93B094591C782CAF00CBF9A5 /* HackIllinois */,
-				93B094881C78310A00CBF9A5 /* HackIllinoisSafariExtensionCompanion */,
 			);
 		};
 /* End PBXProject section */
@@ -236,13 +172,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		93B094871C78310A00CBF9A5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -251,27 +180,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				93B0946C1C78304900CBF9A5 /* ContainerViewController.swift in Sources */,
+				93B094981C7835CA00CBF9A5 /* AppFocusManager.swift in Sources */,
 				93B0945E1C782CAF00CBF9A5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		93B094851C78310A00CBF9A5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				93B0948F1C78310A00CBF9A5 /* ExtensionCompanionRequestHandler.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		93B094921C78310A00CBF9A5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 93B094881C78310A00CBF9A5 /* HackIllinoisSafariExtensionCompanion */;
-			targetProxy = 93B094911C78310A00CBF9A5 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		93B094611C782CAF00CBF9A5 /* MainMenu.xib */ = {
@@ -391,30 +305,6 @@
 			};
 			name = Release;
 		};
-		93B094951C78310A00CBF9A5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = HackIllinoisSafariExtensionCompanion/HackIllinoisSafariExtensionCompanion.entitlements;
-				INFOPLIST_FILE = HackIllinoisSafariExtensionCompanion/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kelhop.HackIllinois.HackIllinoisSafariExtensionCompanion;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		93B094961C78310A00CBF9A5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = HackIllinoisSafariExtensionCompanion/HackIllinoisSafariExtensionCompanion.entitlements;
-				INFOPLIST_FILE = HackIllinoisSafariExtensionCompanion/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kelhop.HackIllinois.HackIllinoisSafariExtensionCompanion;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -434,14 +324,7 @@
 				93B094691C782CAF00CBF9A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		93B094941C78310A00CBF9A5 /* Build configuration list for PBXNativeTarget "HackIllinoisSafariExtensionCompanion" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				93B094951C78310A00CBF9A5 /* Debug */,
-				93B094961C78310A00CBF9A5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

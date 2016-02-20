@@ -10,27 +10,39 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-  @IBOutlet weak var window: NSWindow!
-  
-  private let menuItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
-  
-  func applicationDidFinishLaunching(aNotification: NSNotification) {
-    self.menuItem.image = NSImage(named: "icon")
-    self.menuItem.image?.template = true
-    self.menuItem.action = Selector("menuItemClicked:")
-  }
-
-  func applicationWillTerminate(aNotification: NSNotification) {
-    // Insert code here to tear down your application
-  }
-
-
-  // MARK: - Target action
-  
-  func menuItemClicked(sender: NSMenuItem) {
     
-  }
-  
+    @IBOutlet weak var window: NSWindow!
+    
+    private let menuItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
+    private let containerViewControllerPopover = NSPopover()
+    
+    private let appFocusManager = AppFocusManager()
+    private let containerViewController = ContainerViewController(nibName: "ContainerViewController", bundle: nil)
+    
+    func applicationDidFinishLaunching(aNotification: NSNotification) {
+        self.menuItem.image = NSImage(named: "icon")
+        self.menuItem.image?.template = true
+        self.menuItem.action = Selector("menuItemClicked:")
+        
+        self.appFocusManager.delegate = self.containerViewController
+        self.containerViewControllerPopover.contentViewController = containerViewController
+    }
+    
+    func applicationWillTerminate(aNotification: NSNotification) {
+        // Insert code here to tear down your application
+    }
+    
+    
+    // MARK: - Target action
+    
+    func menuItemClicked(sender: NSMenuItem) {        
+        guard let menuItemButton = self.menuItem.button where !self.containerViewControllerPopover.shown else {
+            self.containerViewControllerPopover.performClose(sender)
+            return
+        }
+        
+        self.containerViewControllerPopover.showRelativeToRect(menuItemButton.bounds, ofView: menuItemButton, preferredEdge: .MinY)
+    }
+    
 }
 
