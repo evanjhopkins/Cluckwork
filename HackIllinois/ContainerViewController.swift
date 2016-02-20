@@ -8,29 +8,59 @@
 
 import Cocoa
 
-class ContainerViewController: NSViewController, AppFocusManagerDelegate {
+class ContainerViewController: NSViewController, FocusManagerDelegate {
     
-    @IBOutlet weak var focusedAppNameLabel: NSTextField!
+    private let currentSessionViewController = CurrentSessionViewController(nibName: "CurrentSessionViewController", bundle:nil)!
+    private let statsViewController = StatsViewController(nibName: "StatsViewController", bundle:nil)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        
+        self.addChildViewController(self.currentSessionViewController)
+        self.view.addSubview(self.currentSessionViewController.view)
+        
+        self.addChildViewController(self.statsViewController)
+        self.view.addSubview(self.statsViewController.view)
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
         
-        NSRunningApplication.currentApplication().activateWithOptions(NSApplicationActivationOptions.ActivateAllWindows)
+//        self.focusedAppNameLabel.stringValue = NSWorkspace.sharedWorkspace().frontmostApplication?.bundleIdentifier ?? "<<<error>>>"
+    }
+    
+    override func viewWillLayout() {
+        super.viewWillLayout()
+        
+        let height = self.view.bounds.size.height - 44
+        self.currentSessionViewController.view.frame = CGRect(x: 0, y: 44, width: self.view.bounds.size.width, height: height)
+        self.statsViewController.view.frame = CGRect(x: 0, y: 44 - height, width: self.view.bounds.size.width, height: height)
+    }
+    
+    
+    // MARK: - Target action
+    
+    override func scrollWheel(theEvent: NSEvent) {
+        print(theEvent.scrollingDeltaY)
     }
     
     
     // MARK: - AppFocusManagerDelegate
     
-    func appFocusManager(appDocusManager: AppFocusManager, didChangeToApplication runningApplication: NSRunningApplication) {
+    func focusManager(focusManager: FocusManager, didChangeToApplication runningApplication: NSRunningApplication) {
         guard self.viewLoaded else {
             return
         }
-        self.focusedAppNameLabel.stringValue = runningApplication.bundleIdentifier ?? "<<<error>>>"
+        
+//        self.focusedAppNameLabel.stringValue = runningApplication.bundleIdentifier ?? "<<<error>>>"
+    }
+    
+    func focusManager(focusManager: FocusManager, didChangeToWebsiteURL websiteURL: NSURL) {
+        guard self.viewLoaded else {
+            return
+        }
+        
+//        self.focusedAppNameLabel.stringValue = websiteURL.path ?? "<<<error>>>"
     }
     
 }

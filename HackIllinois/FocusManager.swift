@@ -1,5 +1,5 @@
 //
-//  AppFocusManager.swift
+//  FocusManager.swift
 //  HackIllinois
 //
 //  Created by Bryan Keller on 2/19/16.
@@ -8,15 +8,16 @@
 
 import Cocoa
 
-@objc protocol AppFocusManagerDelegate: class {
+@objc protocol FocusManagerDelegate: class {
     
-    func appFocusManager(appDocusManager: AppFocusManager, didChangeToApplication runningApplication: NSRunningApplication)
+    func focusManager(focusManager: FocusManager, didChangeToApplication runningApplication: NSRunningApplication)
+    func focusManager(focusManager: FocusManager, didChangeToWebsiteURL websiteURL: NSURL)
     
 }
 
-class AppFocusManager: NSObject {
+class FocusManager: NSObject {
 
-    weak var delegate: AppFocusManagerDelegate?
+    weak var delegate: FocusManagerDelegate?
     
     override init() {
         super.init()
@@ -36,7 +37,7 @@ class AppFocusManager: NSObject {
             return
         }
         
-        self.delegate?.appFocusManager(self, didChangeToApplication: runningApplication)
+        self.delegate?.focusManager(self, didChangeToApplication: runningApplication)
     }
     
 }

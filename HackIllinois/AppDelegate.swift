@@ -16,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private let menuItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
     private let containerViewControllerPopover = NSPopover()
     
-    private let appFocusManager = AppFocusManager()
+    private let focusManager = FocusManager()
     private let containerViewController = ContainerViewController(nibName: "ContainerViewController", bundle: nil)
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
@@ -24,7 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.menuItem.image?.template = true
         self.menuItem.action = Selector("menuItemClicked:")
         
-        self.appFocusManager.delegate = self.containerViewController
+        self.focusManager.delegate = self.containerViewController
         self.containerViewControllerPopover.contentViewController = containerViewController
     }
     
