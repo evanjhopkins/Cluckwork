@@ -41,7 +41,12 @@ class ContainerViewController: NSViewController, FocusManagerDelegate {
     // MARK: - Target action
     
     override func scrollWheel(theEvent: NSEvent) {
-        print(theEvent.scrollingDeltaY)
+        if theEvent.scrollingDeltaY > 50 {
+            
+        }
+        else if theEvent.scrollingDeltaY < 50 {
+            
+        }
     }
     
     
