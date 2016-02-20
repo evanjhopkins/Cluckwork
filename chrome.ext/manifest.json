@@ -1,0 +1,18 @@
+{
+  // Extension ID: knldjmfmopnpolahpmmgbagdohdnhkik
+  //"key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDcBHwzDvyBQ6bDppkIs9MP4ksKqCMyXQ/A52JivHZKh4YO/9vJsT3oaYhSpDCE9RPocOEQvwsHsFReW2nUEc6OLLyoCFFxIb7KkLGsmfakkut/fFdNJYh0xOTbSN8YvLWcqph09XAY2Y/f0AL7vfO1cuCqtkMt8hFrBGWxDdf9CQIDAQAB",
+  "name": "HackIllinois",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Send the active tab to native app.",
+  "icons": {
+    "128": "icon-128.png"
+  },
+  "permissions": [
+    "nativeMessaging",
+    "tabs"
+  ],
+  "background":{
+    "scripts":["background.js"]
+  }
+}
