@@ -13,6 +13,7 @@
 		93B072451C78DD690027BC16 /* StatsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B072431C78DD690027BC16 /* StatsViewController.xib */; };
 		93B072491C7911450027BC16 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B072481C7911450027BC16 /* CircleButton.swift */; };
 		93B0724C1C7976050027BC16 /* work.json in Resources */ = {isa = PBXBuildFile; fileRef = 93B0724B1C7976050027BC16 /* work.json */; };
+		93B0724E1C79BF830027BC16 /* BoundedTopScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B0724D1C79BF820027BC16 /* BoundedTopScrollView.swift */; };
 		93B0945E1C782CAF00CBF9A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B0945D1C782CAF00CBF9A5 /* AppDelegate.swift */; };
 		93B094601C782CAF00CBF9A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93B0945F1C782CAF00CBF9A5 /* Assets.xcassets */; };
 		93B094631C782CAF00CBF9A5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B094611C782CAF00CBF9A5 /* MainMenu.xib */; };
@@ -51,6 +52,7 @@
 		93B072431C78DD690027BC16 /* StatsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsViewController.xib; sourceTree = "<group>"; };
 		93B072481C7911450027BC16 /* CircleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		93B0724B1C7976050027BC16 /* work.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = work.json; sourceTree = "<group>"; };
+		93B0724D1C79BF820027BC16 /* BoundedTopScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundedTopScrollView.swift; sourceTree = "<group>"; };
 		93B0945A1C782CAF00CBF9A5 /* HackIllinois.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackIllinois.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93B0945D1C782CAF00CBF9A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93B0945F1C782CAF00CBF9A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			children = (
 				93B072421C78DD690027BC16 /* StatsViewController.swift */,
 				93B072431C78DD690027BC16 /* StatsViewController.xib */,
+				93B0724D1C79BF820027BC16 /* BoundedTopScrollView.swift */,
 			);
 			name = Stats;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				93B094981C7835CA00CBF9A5 /* FocusManager.swift in Sources */,
 				E1F253CE1C7936F3007C96BB /* SwiftyJSON.swift in Sources */,
 				93B0945E1C782CAF00CBF9A5 /* AppDelegate.swift in Sources */,
+				93B0724E1C79BF830027BC16 /* BoundedTopScrollView.swift in Sources */,
 				E1F253CA1C792C6C007C96BB /* RestrictionProfile.swift in Sources */,
 				93B072491C7911450027BC16 /* CircleButton.swift in Sources */,
 				93B072441C78DD690027BC16 /* StatsViewController.swift in Sources */,
