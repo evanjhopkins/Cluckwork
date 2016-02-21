@@ -43,8 +43,7 @@ class FocusManager: NSObject {
     // MARK: - Target action
     
     func focusedAppDidChange(sender: NSNotification) {
-        guard let runningApplicationBundleIdentifier = (sender.userInfo?[NSWorkspaceApplicationKey] as? NSRunningApplication)?.bundleIdentifier
-        else {
+        guard let runningApplicationBundleIdentifier = NSWorkspace.sharedWorkspace().frontmostApplication?.bundleIdentifier else {
             return
         }
         

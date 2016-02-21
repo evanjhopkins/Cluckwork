@@ -31,7 +31,7 @@ class CurrentSessionViewController: NSViewController, RestrictionProfileSessionM
     @IBAction func toggleSessionButtonClicked(sender: AnyObject?) {
         
         RestrictionProfileSessionManager.sharedManager.restrictionProfile = RestrictionProfile.restrictionProfileFromFile("work")!
-        RestrictionProfileSessionManager.sharedManager.durationInMinutes = 5
+        RestrictionProfileSessionManager.sharedManager.durationInMinutes = 1
         RestrictionProfileSessionManager.sharedManager.delegate = self
         RestrictionProfileSessionManager.sharedManager.startSession()
         self.statusLabel.stringValue = "Don't let your chick die!"
@@ -46,10 +46,20 @@ class CurrentSessionViewController: NSViewController, RestrictionProfileSessionM
     
     func restrictionProfileSessionManager(restrictionProfileSessionManager: RestrictionProfileSessionManager, didCompleteSessionWithRestrictionProfile restrictionProfile: RestrictionProfile) {
         self.statusLabel.stringValue = "You did it! 🐥"
+        
+        let successNotification = NSUserNotification()
+        successNotification.title = "You did it!"
+        successNotification.informativeText = "Great job being productive! Your newborn 🐥 thanks you ❤️"
+        NSUserNotificationCenter.defaultUserNotificationCenter().scheduleNotification(successNotification)
     }
     
     func restrictionProfileSessionManager(restrictionProfileSessionManager: RestrictionProfileSessionManager, didFailSessionWithRestrictionProfile restrictionProfile: RestrictionProfile, minutesLeft: Int, causeIdentifier: String) {
         self.statusLabel.stringValue = "Your chick died 💀🐣💀"
+        
+        let failureNotification = NSUserNotification()
+        failureNotification.title = "Your chick died"
+        failureNotification.informativeText = "You spent too much time doing unproductive things 💔"
+        NSUserNotificationCenter.defaultUserNotificationCenter().scheduleNotification(failureNotification)
     }
     
 }

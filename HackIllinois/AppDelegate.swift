@@ -9,7 +9,7 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
     
     @IBOutlet weak var window: NSWindow!
     
@@ -26,22 +26,39 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.containerViewControllerPopover.contentViewController = containerViewController
         self.containerViewControllerPopover.appearance = NSAppearance(named: NSAppearanceNameAqua)
+        
+        NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }
     
-    
-    // MARK: - Target action
-    
-    func menuItemClicked(sender: NSMenuItem) {        
-        guard let menuItemButton = self.menuItem.button where !self.containerViewControllerPopover.shown else {
-            self.containerViewControllerPopover.performClose(sender)
+    func openMenu() {
+        guard let menuItemButton = self.menuItem.button else {
             return
         }
         
         self.containerViewControllerPopover.showRelativeToRect(menuItemButton.bounds, ofView: menuItemButton, preferredEdge: .MinY)
+    }
+    
+    
+    // MARK: - Target action
+    
+    func menuItemClicked(sender: NSMenuItem) {        
+        guard !self.containerViewControllerPopover.shown else {
+            self.containerViewControllerPopover.performClose(sender)
+            return
+        }
+        
+        self.openMenu()
+    }
+    
+    
+    // MARK: - NSUserNotificationCenterDelegate
+    
+    func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
+        self.openMenu()
     }
     
 }
