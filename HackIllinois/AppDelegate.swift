@@ -18,13 +18,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private let focusManager = FocusManager()
     private let containerViewController = ContainerViewController(nibName: "ContainerViewController", bundle: nil)
+    private let restrictionManager = RestrictionManager(restrictionProfile: RestrictionProfile(profileName: "test", restrictedWebsites: ["www.facebook.com":false], restrictedApps: ["Spotify":false], isWhiteListApps: false, isWhiteListWebsites: false))
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         self.menuItem.image = NSImage(named: "icon")
         self.menuItem.image?.template = true
         self.menuItem.action = Selector("menuItemClicked:")
         
-        self.focusManager.delegate = self.containerViewController
+        //self.focusManager.delegate = self.containerViewController
+        self.focusManager.delegate = self.restrictionManager
         self.containerViewControllerPopover.contentViewController = containerViewController
     }
     
