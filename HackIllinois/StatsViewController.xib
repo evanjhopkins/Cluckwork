@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="StatsViewController" customModule="HackIllinois" customModuleProvider="target">
@@ -52,20 +53,31 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CsM-lA-Efo">
-                                                        <rect key="frame" x="14" y="14" width="340" height="17"/>
+                                                        <rect key="frame" x="54" y="14" width="300" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="WyP-1e-ruQ">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
+                                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lT8-kh-TpX">
+                                                        <rect key="frame" x="16" y="6" width="32" height="32"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="lT8-kh-TpX" secondAttribute="height" multiplier="1:1" id="9bk-74-o4E"/>
+                                                            <constraint firstAttribute="width" constant="32" id="MGX-Pm-wR3"/>
+                                                        </constraints>
+                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="sZG-uU-icy"/>
+                                                    </imageView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="CsM-lA-Efo" firstAttribute="leading" secondItem="q3n-L3-hGf" secondAttribute="leading" constant="16" id="Ej6-Lk-Dnr"/>
                                                     <constraint firstAttribute="trailing" secondItem="CsM-lA-Efo" secondAttribute="trailing" constant="8" id="TSv-bd-Mdc"/>
                                                     <constraint firstItem="CsM-lA-Efo" firstAttribute="centerY" secondItem="q3n-L3-hGf" secondAttribute="centerY" id="cAe-GM-vLG"/>
+                                                    <constraint firstItem="CsM-lA-Efo" firstAttribute="leading" secondItem="lT8-kh-TpX" secondAttribute="trailing" constant="8" id="dJO-Me-Afi"/>
+                                                    <constraint firstItem="lT8-kh-TpX" firstAttribute="leading" secondItem="q3n-L3-hGf" secondAttribute="leading" constant="16" id="eXX-Ua-d0t"/>
+                                                    <constraint firstItem="lT8-kh-TpX" firstAttribute="centerY" secondItem="q3n-L3-hGf" secondAttribute="centerY" id="kC5-pl-VXI"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="imageView" destination="lT8-kh-TpX" id="BDZ-UX-5Fl"/>
                                                     <outlet property="textField" destination="CsM-lA-Efo" id="oPb-Aq-tS0"/>
                                                 </connections>
                                             </tableCellView>

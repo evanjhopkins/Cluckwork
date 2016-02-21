@@ -12,7 +12,7 @@ class StatsViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
 
     @IBOutlet private weak var statsTableView: NSTableView!
     
-    private var stats = ["stat one", "stat two", "stat three"]
+    private var stats = [(String, NSImage)]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +31,16 @@ class StatsViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
         let restrictionProf = RestrictionProfileSessionManager.sharedManager
         stats = []
         let sortedDict = Array(restrictionProf.timeSpent).sort({$0.1 > $1.1})
-        for (k,v) in sortedDict {
-            if(restrictionProf.blockedAppAndWebsiteIdentifiers().contains(k)){
-                stats.append(Int(round(v)).description + " seconds in " + k)
+        for (bundleIdentifier, timeInterval) in sortedDict {
+            if(restrictionProf.blockedAppAndWebsiteIdentifiers().contains(bundleIdentifier)){
+                guard let path = NSWorkspace.sharedWorkspace().absolutePathForAppBundleWithIdentifier(bundleIdentifier),
+                      let bundle = NSBundle(path: path),
+                      let name = bundle.localizedInfoDictionary?["CFBundleName"] else {
+                    continue
+                }
+                
+                let icon = NSWorkspace.sharedWorkspace().iconForFile(path)
+                stats.append(("\(Int(ceil(timeInterval))) seconds in \(name)", icon))
             }
         }
     }
@@ -46,7 +53,8 @@ class StatsViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
         
         if tableColumn!.title == "StatColumn" {
             let stat = self.stats[row]
-            cellView.textField!.stringValue = stat
+            cellView.textField?.stringValue = stat.0
+            cellView.imageView?.image = stat.1
             return cellView
         }
         
