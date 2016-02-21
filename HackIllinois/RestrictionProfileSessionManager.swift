@@ -33,11 +33,13 @@ class RestrictionProfileSessionManager: NSObject {
     private var failureTimer: NSTimer?
     
     func startSession() {
+        //read to disk and populate default values
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("focusChangeNotificationReceived:"), name: FocusManagerDidChangeFocusNotification, object: nil)
         self.sessionTimer = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(self.durationInMinutes * 60), target: self, selector: Selector("sessionCompletionTimerFired:"), userInfo: nil, repeats: false)
     }
     
     func endSession() {
+        //output to disk
         NSNotificationCenter.defaultCenter().removeObserver(self)
         
         self.sessionTimer?.invalidate()

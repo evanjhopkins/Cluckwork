@@ -51,12 +51,8 @@
                                                 <rect key="frame" x="1" y="1" width="360" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6g3-lx-v9x">
-                                                        <rect key="frame" x="3" y="16" width="17" height="17"/>
-                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="pfX-fe-sKY"/>
-                                                    </imageView>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CsM-lA-Efo">
-                                                        <rect key="frame" x="25" y="16" width="105" height="17"/>
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CsM-lA-Efo">
+                                                        <rect key="frame" x="14" y="17" width="340" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="WyP-1e-ruQ">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -64,8 +60,12 @@
                                                         </textFieldCell>
                                                     </textField>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="CsM-lA-Efo" firstAttribute="leading" secondItem="q3n-L3-hGf" secondAttribute="leading" constant="16" id="Ej6-Lk-Dnr"/>
+                                                    <constraint firstAttribute="trailing" secondItem="CsM-lA-Efo" secondAttribute="trailing" constant="8" id="TSv-bd-Mdc"/>
+                                                    <constraint firstItem="CsM-lA-Efo" firstAttribute="centerY" secondItem="q3n-L3-hGf" secondAttribute="centerY" id="cAe-GM-vLG"/>
+                                                </constraints>
                                                 <connections>
-                                                    <outlet property="imageView" destination="6g3-lx-v9x" id="g2T-At-IdV"/>
                                                     <outlet property="textField" destination="CsM-lA-Efo" id="oPb-Aq-tS0"/>
                                                 </connections>
                                             </tableCellView>
@@ -95,7 +95,6 @@
         </customView>
     </objects>
     <resources>
-        <image name="NSActionTemplate" width="14" height="14"/>
         <image name="gradient_bottom" width="8" height="424"/>
     </resources>
 </document>

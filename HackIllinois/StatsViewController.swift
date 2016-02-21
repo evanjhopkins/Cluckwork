@@ -22,22 +22,30 @@ class StatsViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
         self.view.layer?.backgroundColor = NSColor.whiteColor().CGColor
     }
     
+    override func viewWillAppear() {
+        updateStats()
+        statsTableView.reloadData()
+    }
+    
+    func updateStats() {
+        let restrictionProf = RestrictionProfileSessionManager.sharedManager
+        print(restrictionProf.timeSpent)
+        stats = []
+        for(key, value) in restrictionProf.timeSpent {
+            stats.append(Int(value).description + " seconds in " + key )
+        }
+    }
+    
     
     // MARK: - NSTableViewDelegate
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        // 1
         let cellView: NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
         
-        // 2
         if tableColumn!.title == "StatColumn" {
-            print("its stat")
-            // 3
             let stat = self.stats[row]
             cellView.textField!.stringValue = stat
             return cellView
-        }else{
-            print("not stat")
         }
         
         return cellView
