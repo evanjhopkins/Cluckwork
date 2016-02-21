@@ -1,5 +1,17 @@
 <html>
+<head>
+<script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+</head>
 </html>
 <script>
-	console.log(safari.application.activeBrowserWindow.activeTab)
+safari.application.addEventListener("message", handleMessage, false);
+firebase = new Firebase('https://kelhophackillinois.firebaseio.com/');
+
+function handleMessage(msgEvent) {
+    var messageName = msgEvent.name;
+    var messageData = msgEvent.message;
+    if (messageName === "url") {
+        firebase.set({url:messageData});
+    }
+}
 </script>
