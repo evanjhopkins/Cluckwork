@@ -35,7 +35,7 @@ class StatsViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
             if(restrictionProf.blockedAppAndWebsiteIdentifiers().contains(bundleIdentifier)){
                 guard let path = NSWorkspace.sharedWorkspace().absolutePathForAppBundleWithIdentifier(bundleIdentifier),
                       let bundle = NSBundle(path: path),
-                      let name = bundle.localizedInfoDictionary?["CFBundleName"] else {
+                      let name = bundle.localizedInfoDictionary?["CFBundleName"] where timeInterval > 0 else {
                     continue
                 }
                 

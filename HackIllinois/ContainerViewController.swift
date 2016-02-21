@@ -40,12 +40,6 @@ class ContainerViewController: NSViewController {
         self.statsViewController.view.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: Selector("statsViewControllerClicked:")))
     }
     
-    override func viewWillAppear() {
-        super.viewWillAppear()
-        
-//        self.focusedAppNameLabel.stringValue = NSWorkspace.sharedWorkspace().frontmostApplication?.bundleIdentifier ?? "<<<error>>>"
-    }
-    
     override func viewWillLayout() {
         super.viewWillLayout()
         

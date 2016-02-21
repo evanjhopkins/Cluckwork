@@ -127,8 +127,8 @@ class RestrictionProfileSessionManager: NSObject {
                     
                     if self.failureTimer == nil {
                         self.displayedNotification = NSUserNotification()
-                        self.displayedNotification?.title = "Your egg is in danger!"
-                        self.displayedNotification?.informativeText = "Return to an allowed website immediately or the baby chick in your egg will die 🐣🔫"
+                        self.displayedNotification?.title = "Your chick is in danger!"
+                        self.displayedNotification?.informativeText = "Return to an allowed website immediately or your baby chick will die 🐣🔫"
                         NSUserNotificationCenter.defaultUserNotificationCenter().scheduleNotification(self.displayedNotification!)
                         
                         self.failureTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: Selector("failureTimerFired:"), userInfo: nil, repeats: false)
@@ -148,8 +148,8 @@ class RestrictionProfileSessionManager: NSObject {
             if !self.isAppAllowed(identifier) {
                 if self.failureTimer == nil {
                     self.displayedNotification = NSUserNotification()
-                    self.displayedNotification?.title = "Your egg is in danger!"
-                    self.displayedNotification?.informativeText = "Return to an allowed app immediately or the baby chick in your egg will die 🐣🔫"
+                    self.displayedNotification?.title = "Your chick is in danger!"
+                    self.displayedNotification?.informativeText = "Return to an allowed app immediately or chick baby chick will die 🐣🔫"
                     NSUserNotificationCenter.defaultUserNotificationCenter().scheduleNotification(self.displayedNotification!)
                     
                     self.failureTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: Selector("failureTimerFired:"), userInfo: nil, repeats: false)
