@@ -29,10 +29,10 @@ class StatsViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
     
     func updateStats() {
         let restrictionProf = RestrictionProfileSessionManager.sharedManager
-        print(restrictionProf.timeSpent)
         stats = []
-        for(key, value) in restrictionProf.timeSpent {
-            stats.append(Int(value).description + " seconds in " + key )
+        let sortedDict = Array(restrictionProf.timeSpent).sort({$0.1 > $1.1})
+        for (k,v) in sortedDict {
+            stats.append(Int(v).description + " seconds in " + k)
         }
     }
     
