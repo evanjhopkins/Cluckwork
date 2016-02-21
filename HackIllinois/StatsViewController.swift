@@ -33,7 +33,7 @@ class StatsViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
         let sortedDict = Array(restrictionProf.timeSpent).sort({$0.1 > $1.1})
         for (k,v) in sortedDict {
             if(restrictionProf.blockedAppAndWebsiteIdentifiers().contains(k)){
-                stats.append(Int(v).description + " seconds in " + k)
+                stats.append(Int(round(v)).description + " seconds in " + k)
             }
         }
     }
