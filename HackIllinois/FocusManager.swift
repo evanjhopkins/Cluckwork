@@ -9,16 +9,14 @@
 import Cocoa
 import Firebase
 
-@objc protocol FocusManagerDelegate: class {
-    
-    func focusManager(focusManager: FocusManager, didChangeToApplication runningApplication: NSRunningApplication)
-    func focusManager(focusManager: FocusManager, didChangeToWebsiteURL websiteURL: NSURL)
-    
+let FocusManagerDidChangeFocusNotification = "FocusManagerDidChangeFocusNotification"
+
+enum FocusObtainerType: String {
+    case Application = "Application"
+    case Website = "Website"
 }
 
 class FocusManager: NSObject {
-
-    weak var delegate: FocusManagerDelegate?
     
     override init() {
         super.init()
@@ -26,12 +24,14 @@ class FocusManager: NSObject {
         NSWorkspace.sharedWorkspace().notificationCenter.addObserver(self, selector: Selector("focusedAppDidChange:"), name: NSWorkspaceDidActivateApplicationNotification, object: nil)
         
         let firebase = Firebase(url:"https://kelhophackillinois.firebaseio.com")
-
-        firebase.observeEventType(.Value, withBlock: {
-            snapshot in
-            self.delegate?.focusManager(self, didChangeToWebsiteURL: NSURL(string: (snapshot.value["url"] as? String) ?? "url" )! )
-            //print(snapshot.value["url"])
+        firebase.observeEventType(.Value, withBlock: { (snapshot) -> Void in
+            guard let websiteURLString = (snapshot.value as? NSDictionary)?["url"] else {
+                return
+            }
+            
+             NSNotificationCenter.defaultCenter().postNotificationName(FocusManagerDidChangeFocusNotification, object: self, userInfo: ["type": FocusObtainerType.Application.rawValue, "identifier": websiteURLString])
         })
+           
     }
     
     deinit {
@@ -43,11 +43,12 @@ class FocusManager: NSObject {
     // MARK: - Target action
     
     func focusedAppDidChange(sender: NSNotification) {
-        guard let runningApplication = sender.userInfo?[NSWorkspaceApplicationKey] as? NSRunningApplication else {
+        guard let runningApplicationBundleIdentifier = (sender.userInfo?[NSWorkspaceApplicationKey] as? NSRunningApplication)?.bundleIdentifier
+        else {
             return
         }
         
-        self.delegate?.focusManager(self, didChangeToApplication: runningApplication)
+        NSNotificationCenter.defaultCenter().postNotificationName(FocusManagerDidChangeFocusNotification, object: self, userInfo: ["type": FocusObtainerType.Application.rawValue, "identifier": runningApplicationBundleIdentifier])
     }
     
 }

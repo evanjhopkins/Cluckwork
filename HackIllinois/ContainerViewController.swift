@@ -13,7 +13,7 @@ enum ViewingState {
     case ViewingStats
 }
 
-class ContainerViewController: NSViewController, FocusManagerDelegate {
+class ContainerViewController: NSViewController {
     
     private let currentSessionViewController = CurrentSessionViewController(nibName: "CurrentSessionViewController", bundle:nil)!
     private let statsViewController = StatsViewController(nibName: "StatsViewController", bundle:nil)!
@@ -86,25 +86,6 @@ class ContainerViewController: NSViewController, FocusManagerDelegate {
     
     func statsViewControllerClicked(gestureRecognizer: NSClickGestureRecognizer) {
         self.viewingState = .ViewingStats
-    }
-    
-    
-    // MARK: - FocusManagerDelegate
-    
-    func focusManager(focusManager: FocusManager, didChangeToApplication runningApplication: NSRunningApplication) {
-        guard self.viewLoaded else {
-            return
-        }
-        
-//        self.focusedAppNameLabel.stringValue = runningApplication.bundleIdentifier ?? "<<<error>>>"
-    }
-    
-    func focusManager(focusManager: FocusManager, didChangeToWebsiteURL websiteURL: NSURL) {
-        guard self.viewLoaded else {
-            return
-        }
-        
-//        self.focusedAppNameLabel.stringValue = websiteURL.path ?? "<<<error>>>"
     }
     
 }

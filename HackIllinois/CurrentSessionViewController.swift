@@ -21,6 +21,12 @@ class CurrentSessionViewController: NSViewController {
         
         self.durationSlider.target = self
         self.durationSlider.action = Selector("durationSliderValueChanged:")
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("focusChangeNotificationReceived:"), name: FocusManagerDidChangeFocusNotification, object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     
@@ -32,6 +38,17 @@ class CurrentSessionViewController: NSViewController {
     
     func durationSliderValueChanged(sender: AnyObject?) {
         self.durationLabel.stringValue = "\(Int(round(self.durationSlider.doubleValue))) min"
+    }
+    
+    
+    // MARK: - Focus Change Notifications
+    
+    func focusChangeNotificationReceived(notification: NSNotification) {
+        guard self.viewLoaded else {
+            return
+        }
+        
+        print("Focus changed to \(notification.userInfo)")
     }
     
 }
