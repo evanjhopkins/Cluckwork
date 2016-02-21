@@ -30,7 +30,6 @@ class FocusManager: NSObject {
         firebase.observeEventType(.Value, withBlock: {
             snapshot in
             self.delegate?.focusManager(self, didChangeToWebsiteURL: NSURL(string: (snapshot.value["url"] as? String) ?? "url" )! )
-            //print(snapshot.value["url"])
         })
     }
     
