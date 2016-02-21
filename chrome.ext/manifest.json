@@ -10,9 +10,18 @@
   },
   "permissions": [
     "nativeMessaging",
-    "tabs"
+    "tabs",
+    "https://cdn.firebase.com",
+    "https://qpe0guwmmpk.firebaseio-demo.com"
   ],
+  "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com; object-src 'self'",
   "background":{
-    "scripts":["background.js"]
+    "scripts":["firebase.js", "background.js"]
   }
+  // "content_scripts": [
+  //   {
+  //     "js": ["firebase.js"],
+  //     "matches": ["*://*/*"]
+  //   }
+  // ],
 }

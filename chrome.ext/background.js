@@ -1,22 +1,12 @@
-var application = "com.kelhop.HackIllinois.HackIllinoisChromeExtension";
-var port = null;
+var firebase = null;
 
 (function() {
-	initNativeMessaging();
+	initFirebase();
 	createPageOpenOrChangeListeners();
 })();
 
-function initNativeMessaging(){
-	port = chrome.runtime.connectNative(application);
-
-	port.onMessage.addListener(function(msg){
-		console.log(msg);
-	});
-
-	port.onDisconnect.addListener(function(e) {
-	    console.log('unexpected disconnect');
-	    port = null;
-	});
+function initFirebase(){
+	firebase = new Firebase('https://kelhophackillinois.firebaseio.com/');
 }
 
 function createPageOpenOrChangeListeners(){
@@ -29,6 +19,12 @@ function createPageOpenOrChangeListeners(){
 	chrome.tabs.onUpdated.addListener(function(tabId){
 		getTabObjectForTabId(tabId);
 	});
+
+	//listens for changes to firebase
+	// firebase.on('child_added', function(snapshot) {
+	//   var message = snapshot.val();
+	//   console.log(message);
+	// });
 }
 
 //Matches the tab id to the tab object (which contains the url)
@@ -36,18 +32,9 @@ function getTabObjectForTabId(tabId){
 	chrome.tabs.getAllInWindow(null, function(tabs){
 	    for (var i = 0; i < tabs.length; i++) {
 	    	if(tabs[i].id == tabId){
-	    		console.log(tabs[i].url);
-	    		sendUrlToApp();
+	    		//console.log(tabs[i].url);
+	    		firebase.set({url:tabs[i].url});
 	    	}                    
 	    }
 	});
-}
-
-function sendUrlToApp(){
-	if(!port){
-		console.log("No connection to app: message not sent");
-		return;
-	}
-	chrome.runtime.sendNativeMessage(application, "test", null );
-
 }

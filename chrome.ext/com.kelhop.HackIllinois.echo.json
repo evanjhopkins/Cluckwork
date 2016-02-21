@@ -1,0 +1,9 @@
+{
+  "name": "com.kelhop.HackIllinois.echo",
+  "description": "Chrome Native Messaging API Example Host",
+  "path": "HOST_PATH",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://nhahlgdhoicdceloeelcnjnnkaiknohe/"
+  ]
+}
