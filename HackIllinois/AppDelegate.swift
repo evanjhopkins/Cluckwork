@@ -15,19 +15,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private let menuItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
     private let containerViewControllerPopover = NSPopover()
+    private let containerViewController = ContainerViewController(nibName: "ContainerViewController", bundle: nil)
     
     private let focusManager = FocusManager()
-    private let containerViewController = ContainerViewController(nibName: "ContainerViewController", bundle: nil)
-    //private let restrictionManager = RestrictionManager(restrictionProfile: RestrictionProfile(profileName: "test", restrictedWebsites: ["www.facebook.com":false], restrictedApps: ["Spotify":false], isWhiteListApps: false, isWhiteListWebsites: false))
-    private let restrictionManager = RestrictionManager(restrictionProfile: RestrictionProfile.restrictionProfileFromFile("test_profile")!)
+    private let restrictionProfileSessionManager = RestrictionProfileSessionManager(restrictionProfile: RestrictionProfile.restrictionProfileFromFile("test_profile")!, durationInMinutes: 60)
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         self.menuItem.image = NSImage(named: "icon")
         self.menuItem.image?.template = true
         self.menuItem.action = Selector("menuItemClicked:")
         
         self.containerViewControllerPopover.contentViewController = containerViewController
-        
         self.containerViewControllerPopover.appearance = NSAppearance(named: NSAppearanceNameAqua)
+        
+        self.restrictionProfileSessionManager.startSession()
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {

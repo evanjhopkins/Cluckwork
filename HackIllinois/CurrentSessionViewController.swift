@@ -48,7 +48,7 @@ class CurrentSessionViewController: NSViewController {
             return
         }
         
-        print("Focus changed to \(notification.userInfo)")
+        
     }
     
 }
