@@ -8,22 +8,28 @@
 
 import Cocoa
 
-class RestrictionProfile: NSObject{
-    var profileName: String
-    var restrictedWebsites: [String:Bool]
-    var restrictedApps: [String:Bool]
-    var isWhiteListApps: Bool
-    var isWhiteListWebsites: Bool
+enum RestrictionMode {
+    case Whitelist
+    case Blacklist
+}
+
+class RestrictionProfile: NSObject {
     
-    init(profileName: String, restrictedWebsites: [String:Bool], restrictedApps: [String:Bool], isWhiteListApps: Bool, isWhiteListWebsites: Bool) {
+    var profileName: String
+    var apps: [String]
+    var websites: [String]
+    var appsRestrictionMode: RestrictionMode
+    var websitesRestrictionMode: RestrictionMode
+    
+    init(profileName: String, apps: [String], websites: [String], appsRestrictionMode: RestrictionMode, websitesRestrictionMode: RestrictionMode) {
         self.profileName = profileName
-        self.restrictedWebsites = restrictedWebsites
-        self.restrictedApps = restrictedApps
-        self.isWhiteListApps = isWhiteListApps
-        self.isWhiteListWebsites = isWhiteListWebsites
+        self.apps = apps
+        self.websites = websites
+        self.appsRestrictionMode = appsRestrictionMode
+        self.websitesRestrictionMode = websitesRestrictionMode
     }
     
-    class func RestrictionProfileFromFile(profileName: String) -> RestrictionProfile? {
+    class func restrictionProfileFromFile(profileName: String) -> RestrictionProfile? {
         if let path = NSBundle.mainBundle().pathForResource(profileName, ofType: "json") {
             do {
                 let data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path), options: NSDataReadingOptions.DataReadingMappedIfSafe)
@@ -31,28 +37,28 @@ class RestrictionProfile: NSObject{
                 if jsonObj != JSON.null {
                     //coverting json data to native objects
                     let profileName = jsonObj["profileName"].stringValue
-                    let restrictedApps = jsonObj["restrictedApps"].dictionaryObject as! [String:Bool]
-                    let restrictedWebsites = jsonObj["restrictedWebsites"].dictionaryObject as! [String:Bool]
-                    let isWhiteListApps = jsonObj["isWhiteListApps"].boolValue
-                    let isWhiteListWebsites = jsonObj["isWhiteListWebsites"].boolValue
+                    let apps = jsonObj["apps"].arrayObject as? [String] ?? []
+                    let websites = jsonObj["websites"].arrayObject as? [String] ?? []
+                    let appsRestrictionMode = jsonObj["isWhiteListApps"].boolValue ? RestrictionMode.Whitelist : RestrictionMode.Blacklist
+                    let websitesRestrictionMode = jsonObj["isWhiteListWebsites"].boolValue ? RestrictionMode.Whitelist : RestrictionMode.Blacklist
+                    
                     //create a restriction profile from those objects
-                    let loadedRestrictionProfile = RestrictionProfile(
-                        profileName: profileName,
-                        restrictedWebsites: restrictedWebsites,
-                        restrictedApps: restrictedApps,
-                        isWhiteListApps: isWhiteListApps,
-                        isWhiteListWebsites: isWhiteListWebsites
-                    )
+                    let loadedRestrictionProfile = RestrictionProfile(profileName: profileName, apps: apps, websites: websites, appsRestrictionMode: appsRestrictionMode, websitesRestrictionMode: websitesRestrictionMode)
+                    
                     return loadedRestrictionProfile
-                } else {
+                }
+                else {
                     print("File was found, but appears to be invalid")
                 }
-            } catch let error as NSError {
+            }
+            catch let error as NSError {
                 print(error.localizedDescription)
             }
-        } else {
+        }
+        else {
             print("File not found, invalid filename/path.")
         }
+        
         return nil
     }
     
@@ -64,4 +70,5 @@ class RestrictionProfile: NSObject{
     func saveRestrictionProfileToFile() {
         //not implementing for demo
     }
+    
 }

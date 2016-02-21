@@ -19,7 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private let focusManager = FocusManager()
     private let containerViewController = ContainerViewController(nibName: "ContainerViewController", bundle: nil)
     //private let restrictionManager = RestrictionManager(restrictionProfile: RestrictionProfile(profileName: "test", restrictedWebsites: ["www.facebook.com":false], restrictedApps: ["Spotify":false], isWhiteListApps: false, isWhiteListWebsites: false))
-    private let restrictionManager = RestrictionManager(restrictionProfile: RestrictionProfile.RestrictionProfileFromFile("test_profile")!)
+    private let restrictionManager = RestrictionManager(restrictionProfile: RestrictionProfile.restrictionProfileFromFile("test_profile")!)
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         self.menuItem.image = NSImage(named: "icon")
         self.menuItem.image?.template = true

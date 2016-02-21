@@ -23,41 +23,37 @@ class RestrictionManager: NSObject {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    func isWebsiteAllowed(raw_url:String) -> Bool {
-        let domain = domainFromUrl(raw_url)
-        if(restrictionProfile.restrictedWebsites[domain] == false){
-            return false
-        }else{
-            return true
-        }
+    private func isWebsiteAllowed(domain: String) -> Bool {
+        return !(restrictionProfile.websites.contains(domain) ?? true)
     }
     
-    func isAppAllowed(app_name:String) -> Bool {
-        if(restrictionProfile.restrictedApps[app_name] == false){
-            return false
-        }else{
-            return true
-        }
+    private func isAppAllowed(appBundleIdentifier: String) -> Bool {
+        return !(restrictionProfile.apps.contains(appBundleIdentifier) ?? true)
     }
     
-    func domainFromUrl(raw_url: String) -> String {
-        let url = NSURL(string: raw_url)
-        let domain = url?.host
-        return domain! as String
+    func domainFromUrl(urlPath: String) -> String? {
+        guard let url = NSURL(string: urlPath) else {
+            return nil
+        }
+        
+        return url.host
     }
     
     // MARK: - Focus Change Notifications
     
     func focusChangeNotificationReceived(notification: NSNotification) {
-        guard let notificationType = (notification.userInfo as? [String: String])?["type"],
-            let notificationIdentifier = (notification.userInfo as? [String: String])?["identifier"] else {
+        guard let type = (notification.userInfo as? [String: String])?["type"],
+              let identifier = (notification.userInfo as? [String: String])?["identifier"] else {
                 return
         }
         
-        if (FocusObtainerType(rawValue: notificationType) == FocusObtainerType.Website){
-            print(domainFromUrl(notificationIdentifier) + " -> " + isWebsiteAllowed(notificationIdentifier).description)
-        }else if(FocusObtainerType(rawValue: notificationType) == FocusObtainerType.Application){
-            print(notificationIdentifier + " -> " + isAppAllowed(notificationIdentifier).description)
+        if FocusObtainerType(rawValue: type) == FocusObtainerType.Website {
+            if let domain = self.domainFromUrl(identifier) {
+                print(domain + " -> " + isWebsiteAllowed(domain).description)
+            }
+        }
+        else if FocusObtainerType(rawValue: type) == FocusObtainerType.Application {
+            print(identifier + " -> " + isAppAllowed(identifier).description)
         }
     }
     

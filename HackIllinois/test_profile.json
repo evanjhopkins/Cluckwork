@@ -1,9 +1,9 @@
 {
     "profileName": "test profile",
-    "restrictedWebsites": {
+    "websites": {
         "www.facebook.com": false
     },
-    "restrictedApps": {
+    "apps": {
         "com.spotify.client": false
     },
     "isWhiteListApps": false,
