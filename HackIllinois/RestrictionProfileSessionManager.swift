@@ -49,6 +49,16 @@ class RestrictionProfileSessionManager: NSObject {
         self.failureTimer = nil
     }
     
+    func blockedAppAndWebsiteIdentifiers() -> [String] {
+        var blockedAppsAndWebsites: [String] = []
+        for v in timeSpent.keys {
+            if (!isAppAllowed(v) && !isWebsiteAllowed(v)){
+                blockedAppsAndWebsites.append(v)
+            }
+        }
+        return blockedAppsAndWebsites
+    }
+    
     private func isAppAllowed(appBundleIdentifier: String) -> Bool {
         if (appBundleIdentifier == "com.kelhop.HackIllinois") {
             return true
