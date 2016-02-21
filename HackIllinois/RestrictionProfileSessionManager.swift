@@ -50,6 +50,9 @@ class RestrictionProfileSessionManager: NSObject {
     }
     
     private func isAppAllowed(appBundleIdentifier: String) -> Bool {
+        if (appBundleIdentifier == "com.kelhop.HackIllinois") {
+            return true
+        }
         return self.restrictionProfile.apps.contains(appBundleIdentifier) && self.restrictionProfile.appsRestrictionMode == .Whitelist
     }
     
