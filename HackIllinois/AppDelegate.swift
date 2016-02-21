@@ -27,6 +27,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         self.containerViewControllerPopover.contentViewController = containerViewController
         self.containerViewControllerPopover.appearance = NSAppearance(named: NSAppearanceNameAqua)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("focusChangeNotificationReceived:"), name: FocusManagerDidChangeFocusNotification, object: nil)
+        
         NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
     }
     
@@ -34,12 +36,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         // Insert code here to tear down your application
     }
     
-    func openMenu() {
+    private func openMenu() {
         guard let menuItemButton = self.menuItem.button else {
             return
         }
         
         self.containerViewControllerPopover.showRelativeToRect(menuItemButton.bounds, ofView: menuItemButton, preferredEdge: .MinY)
+        NSRunningApplication.currentApplication().activateWithOptions(NSApplicationActivationOptions.ActivateIgnoringOtherApps)
+    }
+    
+    private func closeMenu() {
+        self.containerViewControllerPopover.performClose(nil)
     }
     
     
@@ -47,11 +54,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     func menuItemClicked(sender: NSMenuItem) {        
         guard !self.containerViewControllerPopover.shown else {
-            self.containerViewControllerPopover.performClose(sender)
+            self.closeMenu()
             return
         }
         
         self.openMenu()
+    }
+    
+    
+    // MARK: - Focus Change Notifications
+    
+    func focusChangeNotificationReceived(notification: NSNotification) {
+        if NSRunningApplication.currentApplication().bundleIdentifier != NSWorkspace.sharedWorkspace().frontmostApplication?.bundleIdentifier {
+            self.closeMenu()
+        }
     }
     
     

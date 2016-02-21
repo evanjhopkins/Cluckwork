@@ -21,17 +21,17 @@
                     <rect key="frame" x="0.0" y="0.0" width="365" height="525"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="gradient_bottom" id="yJh-xz-VhJ"/>
                 </imageView>
-                <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="52" horizontalPageScroll="10" verticalLineScroll="52" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Bb-GT-X2a" customClass="BoundedTopScrollView" customModule="HackIllinois" customModuleProvider="target">
+                <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="46" horizontalPageScroll="10" verticalLineScroll="46" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Bb-GT-X2a" customClass="BoundedTopScrollView" customModule="HackIllinois" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="365" height="525"/>
-                    <clipView key="contentView" ambiguous="YES" id="XCL-wC-1aR">
+                    <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="XCL-wC-1aR">
                         <rect key="frame" x="1" y="1" width="363" height="523"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="50" rowSizeStyle="automatic" viewBased="YES" id="kYU-yZ-a8g">
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="44" rowSizeStyle="automatic" viewBased="YES" id="kYU-yZ-a8g">
                                 <rect key="frame" x="0.0" y="0.0" width="363" height="523"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
-                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
                                     <tableColumn identifier="" width="360" minWidth="10" maxWidth="3.4028234663852886e+38" id="83D-x2-OoY">
@@ -48,11 +48,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="q3n-L3-hGf">
-                                                <rect key="frame" x="1" y="1" width="360" height="50"/>
+                                                <rect key="frame" x="1" y="1" width="360" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CsM-lA-Efo">
-                                                        <rect key="frame" x="14" y="17" width="340" height="17"/>
+                                                        <rect key="frame" x="14" y="14" width="340" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="WyP-1e-ruQ">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -74,7 +74,7 @@
                                 </tableColumns>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="R9n-8S-cOC">
                         <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
@@ -92,6 +92,7 @@
                 <constraint firstAttribute="trailing" secondItem="Wu6-Ht-1ow" secondAttribute="trailing" id="ODw-il-AYr"/>
                 <constraint firstItem="Wu6-Ht-1ow" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="QeI-AG-kUl"/>
             </constraints>
+            <point key="canvasLocation" x="480.5" y="242.5"/>
         </customView>
     </objects>
     <resources>
