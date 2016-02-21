@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Firebase
 
 @objc protocol FocusManagerDelegate: class {
     
@@ -23,12 +24,21 @@ class FocusManager: NSObject {
         super.init()
         
         NSWorkspace.sharedWorkspace().notificationCenter.addObserver(self, selector: Selector("focusedAppDidChange:"), name: NSWorkspaceDidActivateApplicationNotification, object: nil)
+        
+        let firebase = Firebase(url:"https://kelhophackillinois.firebaseio.com")
+
+        firebase.observeEventType(.Value, withBlock: {
+            snapshot in
+            self.delegate?.focusManager(self, didChangeToWebsiteURL: NSURL(string: (snapshot.value["url"] as? String) ?? "url" )! )
+            //print(snapshot.value["url"])
+        })
     }
     
     deinit {
         NSWorkspace.sharedWorkspace().notificationCenter.removeObserver(self)
     }
     
+ 
     
     // MARK: - Target action
     
