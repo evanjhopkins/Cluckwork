@@ -65,7 +65,7 @@
 		E151B7F61C79135300D1D595 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E151B7F81C79135F00D1D595 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E151B7FA1C79136500D1D595 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		E1F253C51C79163D007C96BB /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
+		E1F253C51C79163D007C96BB /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = ../Firebase.framework; sourceTree = "<group>"; };
 		E1F253C71C791CE0007C96BB /* RestrictionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestrictionManager.swift; sourceTree = "<group>"; };
 		E1F253C91C792C6C007C96BB /* RestrictionProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestrictionProfile.swift; sourceTree = "<group>"; };
 		E1F253CB1C79340D007C96BB /* test_profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_profile.json; sourceTree = "<group>"; };
@@ -109,6 +109,16 @@
 			name = Stats;
 			sourceTree = "<group>";
 		};
+		93B0724A1C79501C0027BC16 /* 3rd Party */ = {
+			isa = PBXGroup;
+			children = (
+				E1F253C51C79163D007C96BB /* Firebase.framework */,
+				E1F253CD1C7936F3007C96BB /* SwiftyJSON.swift */,
+			);
+			name = "3rd Party";
+			path = HackIllinois;
+			sourceTree = "<group>";
+		};
 		93B094511C782CAF00CBF9A5 = {
 			isa = PBXGroup;
 			children = (
@@ -134,7 +144,6 @@
 				93B094971C7835CA00CBF9A5 /* FocusManager.swift */,
 				E1F253C71C791CE0007C96BB /* RestrictionManager.swift */,
 				E1F253C91C792C6C007C96BB /* RestrictionProfile.swift */,
-				E1F253CD1C7936F3007C96BB /* SwiftyJSON.swift */,
 				93B0946E1C78305200CBF9A5 /* View Controllers */,
 				93B0946F1C78306800CBF9A5 /* Supporting Files */,
 			);
@@ -165,7 +174,7 @@
 		93B094751C7830A200CBF9A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E1F253C51C79163D007C96BB /* Firebase.framework */,
+				93B0724A1C79501C0027BC16 /* 3rd Party */,
 				E151B7FA1C79136500D1D595 /* SystemConfiguration.framework */,
 				E151B7F81C79135F00D1D595 /* Security.framework */,
 				E151B7F61C79135300D1D595 /* CFNetwork.framework */,
@@ -257,7 +266,6 @@
 				93B094981C7835CA00CBF9A5 /* FocusManager.swift in Sources */,
 				E1F253CE1C7936F3007C96BB /* SwiftyJSON.swift in Sources */,
 				93B0945E1C782CAF00CBF9A5 /* AppDelegate.swift in Sources */,
-
 				E1F253CA1C792C6C007C96BB /* RestrictionProfile.swift in Sources */,
 				93B072491C7911450027BC16 /* CircleButton.swift in Sources */,
 				93B072441C78DD690027BC16 /* StatsViewController.swift in Sources */,

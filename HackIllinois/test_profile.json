@@ -4,7 +4,7 @@
         "www.facebook.com": false
     },
     "restrictedApps": {
-        "Spotify": false
+        "com.spotify.client": false
     },
     "isWhiteListApps": false,
     "isWhiteListWebsites": false

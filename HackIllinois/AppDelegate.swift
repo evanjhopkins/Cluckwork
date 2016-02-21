@@ -25,8 +25,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.menuItem.image?.template = true
         self.menuItem.action = Selector("menuItemClicked:")
         
-        //self.focusManager.delegate = self.containerViewController
-        self.focusManager.delegate = self.restrictionManager
         self.containerViewControllerPopover.contentViewController = containerViewController
         
         self.containerViewControllerPopover.appearance = NSAppearance(named: NSAppearanceNameAqua)
