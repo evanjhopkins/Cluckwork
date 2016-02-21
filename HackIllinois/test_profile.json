@@ -1,0 +1,11 @@
+{
+    "profileName": "test profile",
+    "restrictedWebsites": [{
+                           "www.facebook.com": false
+                           }],
+    "restrictedApps": [{
+                       "Spotify": false
+                       }],
+    "isWhiteListApps": false,
+    "isWhiteListWebsites": false
+}
