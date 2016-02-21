@@ -69,12 +69,16 @@ class RestrictionProfileSessionManager: NSObject {
                 return
         }
         
+        let returnToAllowedAppNotification = NSUserNotification()
+        returnToAllowedAppNotification.title = "Your egg is in danger!"
+        
         if FocusObtainerType(rawValue: type) == FocusObtainerType.Website {
             if let domain = self.domainFromUrl(identifier) {
                 print(domain + " -> " + self.isWebsiteAllowed(domain).description)
                 
                 if !self.isWebsiteAllowed(domain) {
-                    
+                    returnToAllowedAppNotification.informativeText = "Return to an allowed website immediately or the baby chick in your egg will die 🐣🔫💔"
+                    NSUserNotificationCenter.defaultUserNotificationCenter().scheduleNotification(returnToAllowedAppNotification)
                 }
             }
         }
@@ -82,7 +86,8 @@ class RestrictionProfileSessionManager: NSObject {
             print(identifier + " -> " + self.isAppAllowed(identifier).description)
             
             if !self.isAppAllowed(identifier) {
-                
+                returnToAllowedAppNotification.informativeText = "Return to an allowed app immediately or the baby chick in your egg will die 🐣🔫💔"
+                NSUserNotificationCenter.defaultUserNotificationCenter().scheduleNotification(returnToAllowedAppNotification)
             }
         }
     }

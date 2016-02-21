@@ -18,7 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private let containerViewController = ContainerViewController(nibName: "ContainerViewController", bundle: nil)
     
     private let focusManager = FocusManager()
-    private let restrictionProfileSessionManager = RestrictionProfileSessionManager(restrictionProfile: RestrictionProfile.restrictionProfileFromFile("test_profile")!, durationInMinutes: 60)
+    private let restrictionProfileSessionManager = RestrictionProfileSessionManager(restrictionProfile: RestrictionProfile.restrictionProfileFromFile("work")!, durationInMinutes: 60)
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         self.menuItem.image = NSImage(named: "icon")

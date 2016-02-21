@@ -1,0 +1,17 @@
+{
+    "profileName": "work",
+    "websites": 
+        ["www.google.com",
+        "developer.apple.com",
+        "stackoverflow.com"]
+    ,
+    "apps":
+        ["com.spotify.client",
+        "com.apple.dt.Xcode",
+        "com.apple.Safari",
+        "com.apple.Terminal",
+        "com.apple.finder"]
+    ,
+    "isWhiteListApps": true,
+    "isWhiteListWebsites": true
+}
