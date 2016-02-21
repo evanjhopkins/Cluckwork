@@ -18,7 +18,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private let containerViewController = ContainerViewController(nibName: "ContainerViewController", bundle: nil)
     
     private let focusManager = FocusManager()
-    private let restrictionProfileSessionManager = RestrictionProfileSessionManager(restrictionProfile: RestrictionProfile.restrictionProfileFromFile("work")!, durationInMinutes: 60)
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         self.menuItem.image = NSImage(named: "icon")
@@ -27,8 +26,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.containerViewControllerPopover.contentViewController = containerViewController
         self.containerViewControllerPopover.appearance = NSAppearance(named: NSAppearanceNameAqua)
-        
-        self.restrictionProfileSessionManager.startSession()
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {

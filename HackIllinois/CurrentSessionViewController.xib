@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="durationLabel" destination="31A-PO-NEA" id="hDN-sU-y4c"/>
                 <outlet property="durationSlider" destination="SU7-JK-ZqI" id="7PI-NT-ch0"/>
+                <outlet property="statusLabel" destination="uz3-gf-BEm" id="ymS-uz-di5"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -57,13 +58,23 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uz3-gf-BEm">
+                    <rect key="frame" x="9" y="335" width="348" height="39"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Ready to be productive?" id="S2a-gm-iap">
+                        <font key="font" metaFont="system" size="32"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
                 <constraint firstItem="SU7-JK-ZqI" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="4ka-Rz-Jha"/>
                 <constraint firstItem="sey-2p-SE6" firstAttribute="top" secondItem="SU7-JK-ZqI" secondAttribute="bottom" constant="8" id="4ki-hX-Ss7"/>
+                <constraint firstItem="uz3-gf-BEm" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="9ge-wG-lYt"/>
                 <constraint firstAttribute="trailing" secondItem="Fkt-Sl-fBc" secondAttribute="trailing" id="AhK-e0-NIT"/>
                 <constraint firstItem="SU7-JK-ZqI" firstAttribute="top" secondItem="31A-PO-NEA" secondAttribute="bottom" constant="8" id="EGD-UM-QW2"/>
                 <constraint firstItem="Fkt-Sl-fBc" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="N7r-dg-VCp"/>
+                <constraint firstItem="uz3-gf-BEm" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" constant="-70" id="Scx-mR-ZW8"/>
                 <constraint firstItem="sey-2p-SE6" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="WLR-nx-F14"/>
                 <constraint firstAttribute="bottom" secondItem="sey-2p-SE6" secondAttribute="bottom" constant="20" id="c3E-8k-wZk"/>
                 <constraint firstItem="31A-PO-NEA" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="rtC-dD-2lO"/>
