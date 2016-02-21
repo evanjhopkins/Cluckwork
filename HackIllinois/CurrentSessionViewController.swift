@@ -8,10 +8,14 @@
 
 import Cocoa
 
-class CurrentSessionViewController: NSViewController {
+class CurrentSessionViewController: NSViewController, RestrictionProfileSessionManagerDelegate {
 
+    @IBOutlet weak var statusLabel: NSTextField!
+    
     @IBOutlet weak var durationSlider: NSSlider!
     @IBOutlet weak var durationLabel: NSTextField!
+    
+    private var restrictionProfileSessionManager: RestrictionProfileSessionManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,34 +25,31 @@ class CurrentSessionViewController: NSViewController {
         
         self.durationSlider.target = self
         self.durationSlider.action = Selector("durationSliderValueChanged:")
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("focusChangeNotificationReceived:"), name: FocusManagerDidChangeFocusNotification, object: nil)
-    }
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     
     // MARK: - Target action
     
     @IBAction func toggleSessionButtonClicked(sender: AnyObject?) {
-        
+        self.restrictionProfileSessionManager = RestrictionProfileSessionManager(restrictionProfile: RestrictionProfile.restrictionProfileFromFile("work")!, durationInMinutes: 1)
+        self.restrictionProfileSessionManager?.delegate = self
+        self.restrictionProfileSessionManager?.startSession()
+        self.statusLabel.stringValue = "Don't let your chick die!"
     }
     
     func durationSliderValueChanged(sender: AnyObject?) {
-        self.durationLabel.stringValue = "\(Int(round(self.durationSlider.doubleValue))) min"
+        self.durationLabel.stringValue = "\(Int(self.durationSlider.doubleValue)) min"
     }
     
     
-    // MARK: - Focus Change Notifications
+    // MARK: - RestrictionProfileSessionManagerDelegate
     
-    func focusChangeNotificationReceived(notification: NSNotification) {
-        guard self.viewLoaded else {
-            return
-        }
-        
-        
+    func restrictionProfileSessionManager(restrictionProfileSessionManager: RestrictionProfileSessionManager, didCompleteSessionWithRestrictionProfile restrictionProfile: RestrictionProfile) {
+        self.statusLabel.stringValue = "You did it! 🐥"
+    }
+    
+    func restrictionProfileSessionManager(restrictionProfileSessionManager: RestrictionProfileSessionManager, didFailSessionWithRestrictionProfile restrictionProfile: RestrictionProfile, minutesLeft: Int, causeIdentifier: String) {
+        self.statusLabel.stringValue = "Your chick died 💀🐣💀"
     }
     
 }

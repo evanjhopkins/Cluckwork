@@ -24,7 +24,6 @@ class FocusManager: NSObject {
         NSWorkspace.sharedWorkspace().notificationCenter.addObserver(self, selector: Selector("focusedAppDidChange:"), name: NSWorkspaceDidActivateApplicationNotification, object: nil)
         
         let firebase = Firebase(url:"https://kelhophackillinois.firebaseio.com")
-
         firebase.observeEventType(.Value, withBlock: { (snapshot) -> Void in
             guard let websiteURLString = (snapshot.value as? NSDictionary)?["url"] else {
                 return
