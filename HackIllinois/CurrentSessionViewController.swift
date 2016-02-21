@@ -15,8 +15,6 @@ class CurrentSessionViewController: NSViewController, RestrictionProfileSessionM
     @IBOutlet weak var durationSlider: NSSlider!
     @IBOutlet weak var durationLabel: NSTextField!
     
-    private var restrictionProfileSessionManager: RestrictionProfileSessionManager?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,9 +29,11 @@ class CurrentSessionViewController: NSViewController, RestrictionProfileSessionM
     // MARK: - Target action
     
     @IBAction func toggleSessionButtonClicked(sender: AnyObject?) {
-        self.restrictionProfileSessionManager = RestrictionProfileSessionManager(restrictionProfile: RestrictionProfile.restrictionProfileFromFile("work")!, durationInMinutes: 1)
-        self.restrictionProfileSessionManager?.delegate = self
-        self.restrictionProfileSessionManager?.startSession()
+        
+        RestrictionProfileSessionManager.sharedManager.restrictionProfile = RestrictionProfile.restrictionProfileFromFile("work")!
+        RestrictionProfileSessionManager.sharedManager.durationInMinutes = 5
+        RestrictionProfileSessionManager.sharedManager.delegate = self
+        RestrictionProfileSessionManager.sharedManager.startSession()
         self.statusLabel.stringValue = "Don't let your chick die!"
     }
     

@@ -17,28 +17,20 @@ protocol RestrictionProfileSessionManagerDelegate: class {
 
 class RestrictionProfileSessionManager: NSObject {
     
-    private let restrictionProfile: RestrictionProfile
-    let durationInMinutes: Int
+    static let sharedManager = RestrictionProfileSessionManager()
+    
+    var restrictionProfile: RestrictionProfile!
+    var durationInMinutes: Int!
+    
     private var lastFocusChangeTime: NSDate?
     private var lastFocusIdentifier: String?
-    public var timeSpent: [String: NSTimeInterval] = [String: NSTimeInterval]()
+    var timeSpent: [String: NSTimeInterval] = [String: NSTimeInterval]()
     weak var delegate: RestrictionProfileSessionManagerDelegate?
     
     private var sessionTimer: NSTimer?
     
     private var displayedNotification: NSUserNotification?
     private var failureTimer: NSTimer?
-
-    init(restrictionProfile: RestrictionProfile, durationInMinutes: Int) {
-        self.restrictionProfile = restrictionProfile
-        self.durationInMinutes = durationInMinutes
-        
-        super.init()
-    }
-    
-    deinit {
-        self.endSession()
-    }
     
     func startSession() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("focusChangeNotificationReceived:"), name: FocusManagerDidChangeFocusNotification, object: nil)
@@ -76,7 +68,7 @@ class RestrictionProfileSessionManager: NSObject {
             var timeInterval = self.timeSpent[lastFocusIdentifier]!
             timeInterval += NSDate().timeIntervalSinceDate(lastFocusChangeTime)
             print(self.lastFocusIdentifier! + ": " + timeInterval.description)
-            self.timeSpent[self.lastFocusIdentifier!] = timeInterval
+            self.timeSpent[lastFocusIdentifier] = timeInterval
         }
         
         if self.timeSpent[identifier] == nil {
