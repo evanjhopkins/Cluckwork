@@ -19,7 +19,9 @@ class RestrictionProfileSessionManager: NSObject {
     
     private let restrictionProfile: RestrictionProfile
     let durationInMinutes: Int
-    
+    private var lastFocusChangeTime: NSDate?
+    private var lastFocusIdentifier: String?
+    public var timeSpent: [String: NSTimeInterval] = [String: NSTimeInterval]()
     weak var delegate: RestrictionProfileSessionManagerDelegate?
     
     private var sessionTimer: NSTimer?
@@ -61,12 +63,29 @@ class RestrictionProfileSessionManager: NSObject {
         return self.restrictionProfile.websites.contains(domain) && self.restrictionProfile.websitesRestrictionMode == .Whitelist
     }
     
-    func domainFromUrl(urlPath: String) -> String? {
+    private func domainFromUrl(urlPath: String) -> String? {
         guard let url = NSURL(string: urlPath) else {
             return nil
         }
         
         return url.host
+    }
+    
+    private func logTimeSpent(forIdentifier identifier: String) {
+        if let lastFocusChangeTime = self.lastFocusChangeTime, let lastFocusIdentifier = self.lastFocusIdentifier {
+            var timeInterval = self.timeSpent[lastFocusIdentifier]!
+            timeInterval += NSDate().timeIntervalSinceDate(lastFocusChangeTime)
+            print(self.lastFocusIdentifier! + ": " + timeInterval.description)
+            self.timeSpent[self.lastFocusIdentifier!] = timeInterval
+        }
+        
+        if self.timeSpent[identifier] == nil {
+            self.timeSpent[identifier] = 0
+        }
+        
+        self.lastFocusIdentifier = identifier
+        self.lastFocusChangeTime = NSDate()
+
     }
     
     
@@ -92,10 +111,13 @@ class RestrictionProfileSessionManager: NSObject {
         }
         
         if FocusObtainerType(rawValue: type) == FocusObtainerType.Website {
+            self.logTimeSpent(forIdentifier: identifier)
+            
             if let domain = self.domainFromUrl(identifier) {
                 print(domain + " -> " + self.isWebsiteAllowed(domain).description)
                 
                 if !self.isWebsiteAllowed(domain) {
+                    
                     if self.failureTimer == nil {
                         self.displayedNotification = NSUserNotification()
                         self.displayedNotification?.title = "Your egg is in danger!"
@@ -114,8 +136,8 @@ class RestrictionProfileSessionManager: NSObject {
             }
         }
         else if FocusObtainerType(rawValue: type) == FocusObtainerType.Application {
-            print(identifier + " -> " + self.isAppAllowed(identifier).description)
-            
+            self.logTimeSpent(forIdentifier: identifier)
+
             if !self.isAppAllowed(identifier) {
                 if self.failureTimer == nil {
                     self.displayedNotification = NSUserNotification()
