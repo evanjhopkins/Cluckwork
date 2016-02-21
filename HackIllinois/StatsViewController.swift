@@ -14,7 +14,7 @@ class StatsViewController: NSViewController {
         super.viewDidLoad()
         
         self.view.wantsLayer = true
-        self.view.layer?.backgroundColor = NSColor.blueColor().CGColor
+        self.view.layer?.backgroundColor = NSColor.whiteColor().CGColor
     }
     
 }

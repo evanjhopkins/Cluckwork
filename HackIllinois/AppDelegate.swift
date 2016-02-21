@@ -26,6 +26,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.focusManager.delegate = self.containerViewController
         self.containerViewControllerPopover.contentViewController = containerViewController
+        
+        self.containerViewControllerPopover.appearance = NSAppearance(named: NSAppearanceNameAqua)
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {
